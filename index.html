@@ -9,19 +9,21 @@
 <body style="margin : 0px; overflow: hidden;">
     111
     <a-scene embedded arjs>
+        <a-assets>
+            <audio id="sound" src="sound/phonegirl.mp3" preload="auto"></audio>
+        </a-assets>
         <a-marker preset="hiro">
             <!-- we use cors proxy to avoid cross-origin problems -->
             <!--
-              ⚠️⚠️⚠️
-              https://arjs-cors-proxy.herokuapp.com/ is now offline, Heroku has dismissed all his free plans from November 2022.
-              You need to host your own proxy and use it instead. The proxy is based on CORS Anywhere (see https://github.com/Rob--W/cors-anywhere).
-              ⚠️⚠️⚠️
-            -->
+          ⚠️⚠️⚠️
+          https://arjs-cors-proxy.herokuapp.com/ is now offline, Heroku has dismissed all his free plans from November 2022.
+          You need to host your own proxy and use it instead. The proxy is based on CORS Anywhere (see https://github.com/Rob--W/cors-anywhere).
+          ⚠️⚠️⚠️
+        -->
             <a-entity position="0 0 0"
                       scale="0.5 0.5 0.5"
-                     
                       gltf-model="gltf/phonegirl.gltf"
-                      sound="src: url(sound/phonegirl.mp3); autoplay:true"
+                      sound="src: #sound; autoplay:true"
                       animation-mixer>
 
             </a-entity>

@@ -28,24 +28,32 @@
                       animation-mixer>
 
             </a-entity>
-            <a-entity sound="src: #sound" autoplay="false"></a-entity>
+
 
         </a-marker>
+        <a-entity sound="src: #sound" autoplay="false"></a-entity>
         <a-entity camera></a-entity>
     </a-scene>
 
     <script>
-        AFRAME.registerComponent('soundhandler', {
-            tick: function () {
-                var entity = document.querySelector('[sound]');
-                if (document.querySelector('a-marker').object3D.visible == true) {
-                    entity.components.sound.playSound();
-                } else {
-                    entity.components.sound.pauseSound();
-                }
+         AFRAME.registerComponent('soundhandler', {
+        init: function () {
+            this.soundEl = document.querySelector('[sound]');
+            this.marker = document.querySelector('a-marker');
+            this.visible = false;
+        },
+        tick: function () {
 
+            if (this.marker.object3D.visible && !this.visible) {
+                //console.log("ding")
+                //this.soundEl.components.sound.stopSound();  stop if playing
+                this.soundEl.components.sound.playSound(); // play
+                this.visible = true; // make sure it plays only once per visible
+            } else if (!this.marker.object3D.visible) {
+                this.visible = false;
             }
-        });
+        }
+    });
     </script>
 
 </body>
